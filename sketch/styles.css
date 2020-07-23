@@ -47,23 +47,53 @@ header .t-typ {
 header .u-car {
   width: 30%;
   display: flex;
-  justify-content: start;
-  align-items: center;
   font-size: 20px;
-  border: solid 1px red;
+  font-weight: 300;
+}
+
+header .user {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+header .cart {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header .icon {
   margin-right: 10px;
+  display: flex;
 }
 
-header .user {
-  margin-right: 50px;
-  font-weight: 300;
+header .badge {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  color: black;
+  display: inline-block;
+  font-size: 14px;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap; 
 }
 
-header .cart {
-  font-weight: 300;
+header .u-car-text{
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  header .u-car-text{
+    display: flex;
+  }
+  header .badge {
+    margin-left: 10px;
+  }
 }
 
 /* ======= MAIN ======= */

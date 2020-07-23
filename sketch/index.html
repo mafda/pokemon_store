@@ -11,9 +11,11 @@
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="t-typ">
+        <!-- NAVBAR -->
         <nav>
           <div class="nav-wrapper">
             <input class="hidden" type="checkbox" id="menuToggle">
@@ -22,34 +24,45 @@
               <div class="menu"></div>
               <div class="menu"></div>
             </label>
-
             <div class="logo-container">
               <img src="https://dummyimage.com/100x60" alt="Logo">
             </div>
-
             <div class="nav-container">
               <ul class="nav-tabs">
                 <li class="nav-tab">Type 1</li>
                 <li class="nav-tab">Type 2</li>
               </ul>
             </div>
-
           </div>
         </nav>
       </div>
       <div class="u-car">
         <div class="user">
-          <p><i class="fa fa-user-circle icon"></i>Hello, User</p>
+          <div class="icon">
+            <i class="fa fa-user-circle"></i>
+          </div>
+          <div class="u-car-text">
+            <p>Hello, User</p>
+          </div>
         </div>
         <div class="cart">
-          <p><i class="fa fa-shopping-cart icon"></i>Cart</p>
+          <div class="icon">
+            <i class="fa fa-shopping-cart"></i>
+          </div>
+          <div class="u-car-text">
+            <p>Cart</p>
+          </div>
+          <div class="icon">
+            <span class="badge">2</span>
+          </div>
         </div>
       </div>
     </div>
   </header>
-
+  <!-- MAIN -->
   <main>
     <div class="container">
+      <!-- ITEMS -->
       <div class="items">
         <h2>Title</h2>
         <ul>
@@ -121,7 +134,7 @@
           </li>
         </ul>
       </div>
-
+      <!-- CART -->
       <div class="cart">
         <div class='summary-cart'>
           <div class='summary'>
@@ -162,7 +175,6 @@
                 </div>
               </li>
             </ul>
-
             <div class='summary-cost'>
               <div class='cost'>
                 <div class='label'><strong>Subtotal</strong></div>
@@ -189,16 +201,13 @@
                 </div>
               </div>
             </div>
-
           </div>
           <input type="submit" value="Checkout" class="checkout" />
         </div>
-
       </div>
     </div>
-
   </main>
-
+  <!-- FOOTER -->
   <footer>
     <div class="sign">
       <p><span class="fas fa-code"></span> with <span class="fas fa-heart"></span> by <a href="https://mafda.github.io/"
