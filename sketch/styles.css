@@ -8,7 +8,6 @@
   margin: 0;
   padding: 0;
   outline: 0;
-  /* box-sizing: border-box; */
   user-select: none;
   -webkit-font-smoothing: antialiased;
 }
@@ -36,34 +35,22 @@ header {
 
 header .container {
   width: 80%;
-  padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 header .t-typ {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-
-header .title h1 {
-  font-size: 40px;
-  font-weight: 900;
-}
-
-header .types {
-  font-size: 30px;
-  margin-left: 40px;
-  font-weight: 300;
+  width: 70%;
 }
 
 header .u-car {
+  width: 30%;
   display: flex;
   justify-content: start;
   align-items: center;
   font-size: 20px;
+  border: solid 1px red;
 }
 
 header .icon {
@@ -88,13 +75,11 @@ main {
   align-items: start;
   justify-content: center;
   font-family: "Roboto", sans-serif;
-  /* border: solid 1px blueviolet; */
 }
 
 main .container {
   width: 80%;
   display: flex;
-  /* border: solid 1px black; */
   min-width: 340px;
 }
 
@@ -102,7 +87,6 @@ main .container {
 
 main .items {
   width: 60%;
-  /* border: solid 1px red; */
   margin: 20px;
   min-width: 300px;
   max-width: 2000px;
@@ -197,7 +181,6 @@ main .items ul {
 
 main .cart {
   width: 40%;
-  /* border: solid 1px orangered; */
   margin: 20px;
   padding: 30px;
 }

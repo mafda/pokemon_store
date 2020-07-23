@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <title>Shopping Cart - Sketch</title>
 </head>
@@ -13,12 +14,28 @@
   <header>
     <div class="container">
       <div class="t-typ">
-        <div class="title">
-          <h1>Title</h1>
-        </div>
-        <div class="types">
-          <p>Type</p>
-        </div>
+        <nav>
+          <div class="nav-wrapper">
+            <input class="hidden" type="checkbox" id="menuToggle">
+            <label class="menu-btn" for="menuToggle">
+              <div class="menu"></div>
+              <div class="menu"></div>
+              <div class="menu"></div>
+            </label>
+
+            <div class="logo-container">
+              <img src="https://dummyimage.com/100x60" alt="Logo">
+            </div>
+
+            <div class="nav-container">
+              <ul class="nav-tabs">
+                <li class="nav-tab">Type 1</li>
+                <li class="nav-tab">Type 2</li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
       </div>
       <div class="u-car">
         <div class="user">
