@@ -17,7 +17,9 @@ const Product = (prop) => {
               <p>{item.price}</p>
               <p>{item.other}</p>
             </div>
-            <button className='buy'>Buy</button>
+            <button className='buy' onClick={() => { prop.onClick(item) }} >
+              Buy
+            </button>
           </li>
         ))}
       </ul>

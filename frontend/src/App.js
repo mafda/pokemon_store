@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css'
 
@@ -7,21 +7,26 @@ import Footer from './components/Footer';
 import ProductsGrid from './components/ProductsGrid';
 import Cart from './components/Cart';
 
+
 const App = () => {
 
-  const items = [
-    { id: 1, name: "name1", price: 123, other: "typeA" },
-    { id: 2, name: "name2", price: 456, other: "typeB" },
-    { id: 3, name: "name3", price: 789, other: "typeC" },
-    { id: 4, name: "name4", price: 112, other: "typeA" },
-    { id: 5, name: "name5", price: 345, other: "typeB" }
-  ];
+  const [items, setItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
-  const selectedItems = [
-    { id: 1, name: "selected1", price: 123, quantity: "1" },
-    { id: 2, name: "selected2", price: 456, quantity: "2" },
-    { id: 3, name: "selected3", price: 789, quantity: "3" }
-  ];
+  useEffect(() => {
+    /** api call */
+    const apiItems = [
+      { id: 1, name: "name1", price: 123, other: "typeA" },
+      { id: 2, name: "name2", price: 456, other: "typeB" },
+      { id: 3, name: "name3", price: 789, other: "typeC" },
+      { id: 4, name: "name4", price: 112, other: "typeA" },
+      { id: 5, name: "name5", price: 345, other: "typeB" }
+    ];
+
+    /** set items */
+    setItems(apiItems);
+  }, []);
+
 
   const itemsCount = 3;
 
@@ -35,6 +40,15 @@ const App = () => {
   const discount = 1;
   const total = 100;
 
+  const handleIncreaseItem = (item) => {
+    setSelectedItems([...selectedItems, item]);
+  };
+
+  const handleDecreaseItem = (item) => {
+    var found = false;
+    const filtered = selectedItems.filter(v => found || !(found = v === item));
+    setSelectedItems(filtered);
+  };
 
   return (
     <div>
@@ -49,11 +63,14 @@ const App = () => {
 
           <ProductsGrid
             items={items}
+            onClick={handleIncreaseItem}
             title={types[selectedTypeIdx]}
           />
 
           <Cart
             selectedItems={selectedItems}
+            increaseItem={handleIncreaseItem}
+            decreaseItem={handleDecreaseItem}
             subtotal={subtotal}
             shipping={shipping}
             discount={discount}

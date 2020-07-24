@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 import './styles.css';
@@ -30,9 +30,29 @@ const PartialValues = (prop) => {
 };
 
 const ProductList = (prop) => {
+
+  const [singleSelected, setSingleSelected] = useState([]);
+  const [counts, setCounts] = useState([]);
+
+  useEffect(() => {
+    var newCounts = {};
+    var newSingle = []
+
+    prop.selectedItems.forEach((item) => {
+      newCounts[item.id] = (newCounts[item.id] || 0) + 1;
+      if (newCounts[item.id] === 1) {
+        newSingle.push(item);
+      }
+    });
+
+    setSingleSelected(newSingle);
+    setCounts(newCounts);
+
+  }, [prop.selectedItems]);
+
   return (
     <ul>
-      {prop.selectedItems.map(item => (
+      {singleSelected.map(item => (
         <li key={item.id}>
           <img src="https://dummyimage.com/90" alt="" />
           <div className='summary-description'>
@@ -40,13 +60,21 @@ const ProductList = (prop) => {
               <strong>{item.name}</strong>
             </div>
             <div className='summary-description-product'>
-              <p>{item.quantity}</p>
+              <p>{counts[item.id]}</p>
               <p>{item.price}</p>
             </div>
           </div>
           <div className='summary-add'>
-            <span><FaPlusCircle /></span>
-            <span><FaMinusCircle /></span>
+            <span
+              onClick={() => { prop.increaseItem(item) }}
+            >
+              <FaPlusCircle />
+            </span>
+            <span
+              onClick={() => { prop.decreaseItem(item) }}
+            >
+              <FaMinusCircle />
+            </span>
           </div>
         </li>
       ))}
@@ -62,7 +90,11 @@ const Cart = (prop) => {
 
           <div className='summary-title'>
             <strong>Cart</strong>
-            <ProductList selectedItems={prop.selectedItems} />
+            <ProductList
+              selectedItems={prop.selectedItems}
+              increaseItem={prop.increaseItem}
+              decreaseItem={prop.decreaseItem}
+            />
           </div>
 
           <div className='summary-cost'>
