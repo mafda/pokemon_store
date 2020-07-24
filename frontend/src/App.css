@@ -102,7 +102,7 @@ main {
   margin: 70px 0 50px 0;
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   font-family: "Roboto", sans-serif;
 }
@@ -371,7 +371,7 @@ nav {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
-	justify-content: start;
+	justify-content: flex-start;
 	margin: auto;
 	width: 100%;
 	z-index: 2;

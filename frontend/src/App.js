@@ -5,49 +5,64 @@ import { FaPlusCircle, FaMinusCircle, FaUserCircle, FaShoppingCart, FaHeart, FaC
 import './App.css'
 
 const App = () => {
+
+  const items = [
+    { id: 1, name: "name1", price: 123, other: "typeA" },
+    { id: 2, name: "name2", price: 456, other: "typeB" },
+    { id: 3, name: "name3", price: 789, other: "typeC" },
+    { id: 4, name: "name4", price: 112, other: "typeA" },
+    { id: 5, name: "name5", price: 345, other: "typeB" }
+  ];
+
+  const selectedItems = [
+    { id: 1, name: "selected1", price: 123, quantity: "1" },
+    { id: 2, name: "selected2", price: 456, quantity: "2" },
+    { id: 3, name: "selected3", price: 789, quantity: "3" }
+  ];
+
   return (
     <div>
       <header>
-        <div class="container">
-          <div class="t-typ">
+        <div className="container">
+          <div className="t-typ">
             <nav>
-              <div class="nav-wrapper">
-                <input class="hidden" type="checkbox" id="menuToggle" />
-                <label class="menu-btn" for="menuToggle">
-                  <div class="menu"></div>
-                  <div class="menu"></div>
-                  <div class="menu"></div>
+              <div className="nav-wrapper">
+                <input className="hidden" type="checkbox" id="menuToggle" />
+                <label className="menu-btn" htmlFor="menuToggle">
+                  <div className="menu"></div>
+                  <div className="menu"></div>
+                  <div className="menu"></div>
                 </label>
-                <div class="logo-container">
+                <div className="logo-container">
                   <img src="https://dummyimage.com/100x60" alt="Logo" />
                 </div>
-                <div class="nav-container">
-                  <ul class="nav-tabs">
-                    <li class="nav-tab">Type 1</li>
-                    <li class="nav-tab">Type 2</li>
+                <div className="nav-container">
+                  <ul className="nav-tabs">
+                    <li className="nav-tab">Type 1</li>
+                    <li className="nav-tab">Type 2</li>
                   </ul>
                 </div>
               </div>
             </nav>
           </div>
-          <div class="u-car">
-            <div class="user">
-              <div class="icon">
+          <div className="u-car">
+            <div className="user">
+              <div className="icon">
                 <FaUserCircle />
               </div>
-              <div class="u-car-text">
+              <div className="u-car-text">
                 <p>Hello, User</p>
               </div>
             </div>
-            <div class="cart">
-              <div class="icon">
+            <div className="cart">
+              <div className="icon">
                 <FaShoppingCart />
               </div>
-              <div class="u-car-text">
+              <div className="u-car-text">
                 <p>Cart</p>
               </div>
-              <div class="icon">
-                <span class="badge">2</span>
+              <div className="icon">
+                <span className="badge">2</span>
               </div>
             </div>
           </div>
@@ -55,154 +70,87 @@ const App = () => {
       </header>
 
       <main>
-        <div class="container">
-          <div class="items">
+        <div className="container">
+          <div className="items">
             <h2>Title</h2>
             <ul>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
-              <li>
-                <img src="https://dummyimage.com/150x150" alt="" />
-                <div class="p-name">
-                  <strong>Name</strong>
-                </div>
-                <div class="p-description">
-                  <p>Price</p>
-                  <p>Other</p>
-                </div>
-                <button class='buy'>Buy</button>
-              </li>
+              {items.map(item => (
+                <li key={item.id}>
+                  <img src="https://dummyimage.com/150x150" alt="" />
+                  <div className="p-name">
+                    <strong>{item.name}</strong>
+                  </div>
+                  <div className="p-description">
+                    <p>{item.price}</p>
+                    <p>{item.other}</p>
+                  </div>
+                  <button className='buy'>Buy</button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div class="cart">
-            <div class='summary-cart'>
-              <div class='summary'>
-                <div class='summary-title'>
+          <div className="cart">
+            <div className='summary-cart'>
+              <div className='summary'>
+                <div className='summary-title'>
                   <strong>Cart</strong>
                 </div>
                 <ul>
-                  <li>
-                    <img src="https://dummyimage.com/90" alt="" />
-                    <div class='summary-description'>
-                      <div class='summary-description-name'>
-                        <strong>Name</strong>
+                  {selectedItems.map(item => (
+                    <li key={item.id}>
+                      <img src="https://dummyimage.com/90" alt="" />
+                      <div className='summary-description'>
+                        <div className='summary-description-name'>
+                          <strong>{item.name}</strong>
+                        </div>
+                        <div className='summary-description-product'>
+                          <p>{item.quantity}</p>
+                          <p>{item.price}</p>
+                        </div>
                       </div>
-                      <div class='summary-description-product'>
-                        <p>Quantity</p>
-                        <p>Price</p>
+                      <div className='summary-add'>
+                        <span><FaPlusCircle /></span>
+                        <span><FaMinusCircle /></span>
                       </div>
-                    </div>
-                    <div class='summary-add'>
-                      <span><FaPlusCircle /></span>
-                      <span><FaMinusCircle /></span>
-                    </div>
-                  </li>
-                  <li>
-                    <img src="https://dummyimage.com/90" alt="" />
-                    <div class='summary-description'>
-                      <div class='summary-description-name'>
-                        <strong>Name</strong>
-                      </div>
-                      <div class='summary-description-product'>
-                        <p>Quantity</p>
-                        <p>Price</p>
-                      </div>
-                    </div>
-                    <div class='summary-add'>
-                      <span><FaPlusCircle /></span>
-                      <span><FaMinusCircle /></span>
-                    </div>
-                  </li>
+                    </li>
+                  ))}
                 </ul>
-                <div class='summary-cost'>
-                  <div class='cost'>
-                    <div class='label'><strong>Subtotal</strong></div>
-                    <div class='subtotal'>
+                <div className='summary-cost'>
+                  <div className='cost'>
+                    <div className='label'><strong>Subtotal</strong></div>
+                    <div className='subtotal'>
                       <p>Price</p>
                     </div>
                   </div>
-                  <div class='cost'>
-                    <div class='label'><strong>Shipping</strong></div>
-                    <div class='subtotal'>
+                  <div className='cost'>
+                    <div className='label'><strong>Shipping</strong></div>
+                    <div className='subtotal'>
                       <p>Price</p>
                     </div>
                   </div>
-                  <div class='cost'>
-                    <div class='label'><strong>Discount</strong></div>
-                    <div class='subtotal'>
+                  <div className='cost'>
+                    <div className='label'><strong>Discount</strong></div>
+                    <div className='subtotal'>
                       <p>Price</p>
                     </div>
                   </div>
-                  <div class='cost'>
-                    <div class='label total'>Total</div>
-                    <div class='subtotal total'>
+                  <div className='cost'>
+                    <div className='label total'>Total</div>
+                    <div className='subtotal total'>
                       <p>Total</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <input type="submit" value="Checkout" class="checkout" />
+              <input type="submit" value="Checkout" className="checkout" />
             </div>
           </div>
         </div>
       </main>
 
       <footer>
-        <div class="sign">
+        <div className="sign">
           <p>< FaCode /> with < FaHeart /> by <a href="https://mafda.github.io/"
             target="blank">mafda</a></p>
         </div>
