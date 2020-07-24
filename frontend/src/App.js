@@ -13,7 +13,8 @@ const App = () => {
 
   const [pokemon, setPokemon] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState([]);
-
+  const [pageNumber, setPageNumber] = useState(0);
+  const itemPerPage = 12;
   const [pokeByType, setPokeByType] = useState([]);
 
 
@@ -36,11 +37,13 @@ const App = () => {
 
     const loadPokemon = async () => {
       const listPokemon = [];
-      for (let i = 0; i < 10; i++) {
+      const start = pageNumber * itemPerPage;
+      const end = (pageNumber + 1) * itemPerPage;
+      for (let i = start; i < end; i++) {
         const { data } = await api.get(pokeByType[i].pokemon.url);
         listPokemon.push({
           id: i,
-          name: data.name,
+          name: data.name[0].toUpperCase() + data.name.slice(1),
           price: data.base_experience,
           other: data.weight,
           img_url: data.sprites.front_default,
@@ -51,7 +54,7 @@ const App = () => {
 
     loadPokemon();
 
-  }, [pokeByType]);
+  }, [pokeByType, pageNumber]);
 
 
   const itemsCount = 3;
@@ -61,10 +64,6 @@ const App = () => {
 
   const user = 'User';
 
-  const subtotal = 10;
-  const shipping = 4;
-  const discount = 1;
-  const total = 100;
 
   const handleIncreaseItem = (item) => {
     setSelectedPokemon([...selectedPokemon, item]);
@@ -97,10 +96,6 @@ const App = () => {
             selectedItems={selectedPokemon}
             increaseItem={handleIncreaseItem}
             decreaseItem={handleDecreaseItem}
-            subtotal={subtotal}
-            shipping={shipping}
-            discount={discount}
-            total={total}
           />
 
         </div>
