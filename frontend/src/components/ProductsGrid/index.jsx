@@ -9,13 +9,13 @@ const Product = (prop) => {
       <ul>
         {prop.items.map(item => (
           <li key={item.id}>
-            <img src="https://dummyimage.com/150x150" alt="" />
+            <img src={item.img_url} alt="" />
             <div className="p-name">
               <strong>{item.name}</strong>
             </div>
             <div className="p-description">
-              <p>{item.price}</p>
-              <p>{item.other}</p>
+              <p>${(item.price).toFixed(2)}</p>
+              <p>{item.other} kg</p>
             </div>
             <button className='buy' onClick={() => { prop.onClick(item) }} >
               Buy
