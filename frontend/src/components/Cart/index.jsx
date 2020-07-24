@@ -35,12 +35,14 @@ const ProductList = (prop) => {
   const [counts, setCounts] = useState([]);
   const [pricePerQtt, setPricePerQtt] = useState([]);
   const setSubtotal = prop.setSubtotal;
+  const setWeight = prop.setWeight;
 
   useEffect(() => {
     const newCounts = {};
     const newSingle = [];
     const newPrices = {};
     var newSubtotal = 0;
+    var newWeight = 0;
 
     prop.selectedItems.forEach((item) => {
       newCounts[item.id] = (newCounts[item.id] || 0) + 1;
@@ -51,14 +53,16 @@ const ProductList = (prop) => {
       newPrices[item.id] = newCounts[item.id] * item.price;
 
       newSubtotal += item.price;
+      newWeight += item.other;
     });
 
     setSingleSelected(newSingle);
     setCounts(newCounts);
     setPricePerQtt(newPrices);
     setSubtotal(newSubtotal);
+    setWeight(newWeight);
 
-  }, [prop.selectedItems, setSubtotal]);
+  }, [prop.selectedItems, setSubtotal, setWeight]);
 
   return (
     <ul>
@@ -70,8 +74,8 @@ const ProductList = (prop) => {
               <strong>{item.name}</strong>
             </div>
             <div className='summary-description-product'>
-              <p>{counts[item.id]}</p>
-              <p>{pricePerQtt[item.id]}</p>
+              <p>Quantity: {counts[item.id]}</p>
+              <p>${pricePerQtt[item.id].toFixed(2)}</p>
             </div>
           </div>
           <div className='summary-add'>
@@ -94,6 +98,18 @@ const ProductList = (prop) => {
 
 const Cart = (prop) => {
   const [subtotal, setSubtotal] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setShipping(weight / 10);
+  }, [weight]);
+
+  useEffect(() => {
+    setTotal(subtotal + shipping);
+
+  }, [subtotal, shipping]);
 
   return (
     <div className="cart">
@@ -107,30 +123,32 @@ const Cart = (prop) => {
               increaseItem={prop.increaseItem}
               decreaseItem={prop.decreaseItem}
               setSubtotal={setSubtotal}
+              setWeight={setWeight}
             />
           </div>
 
           <div className='summary-cost'>
+            <PartialValues
+              label='Weight'
+              value={`${weight} kg`}
+              total={false}
+            />
 
             <PartialValues
               label='Subtotal'
-              value={subtotal}
+              value={`$${subtotal.toFixed(2)}`}
               total={false}
             />
-            <PartialValues
-              label='Weight'
-              value={`100 kg`}
-              total={false}
-            />
+
             <PartialValues
               label='Shipping'
-              value={`$150.00`}
+              value={`$${shipping.toFixed(2)}`}
               total={false}
             />
 
             <PartialValues
               label='Total'
-              value={0}
+              value={`$${total.toFixed(2)}`}
               total={true}
             />
           </div>
