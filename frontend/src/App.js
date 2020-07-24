@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from './services/api';
 
 import './App.css'
 
@@ -10,22 +11,47 @@ import Cart from './components/Cart';
 
 const App = () => {
 
-  const [items, setItems] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState([]);
 
+  const [pokeByType, setPokeByType] = useState([]);
+
+
+  // Initial loading
   useEffect(() => {
-    /** api call */
-    const apiItems = [
-      { id: 1, name: "name1", price: 123, other: "typeA" },
-      { id: 2, name: "name2", price: 456, other: "typeB" },
-      { id: 3, name: "name3", price: 789, other: "typeC" },
-      { id: 4, name: "name4", price: 112, other: "typeA" },
-      { id: 5, name: "name5", price: 345, other: "typeB" }
-    ];
+    const loadPokeByType = async (type) => {
+      const response = await api.get(`/type/${type}/`);
+      setPokeByType(response.data.pokemon);
+    };
 
-    /** set items */
-    setItems(apiItems);
+    loadPokeByType(10);
   }, []);
+
+  // Load pokemon 
+  useEffect(() => {
+
+    if (pokeByType.length === 0) {
+      return
+    }
+
+    const loadPokemon = async () => {
+      const listPokemon = [];
+      for (let i = 0; i < 10; i++) {
+        const { data } = await api.get(pokeByType[i].pokemon.url);
+        listPokemon.push({
+          id: i,
+          name: data.name,
+          price: data.base_experience,
+          other: data.weight,
+          img_url: data.sprites.front_default,
+        });
+      }
+      setPokemon(listPokemon);
+    };
+
+    loadPokemon();
+
+  }, [pokeByType]);
 
 
   const itemsCount = 3;
@@ -41,13 +67,13 @@ const App = () => {
   const total = 100;
 
   const handleIncreaseItem = (item) => {
-    setSelectedItems([...selectedItems, item]);
+    setSelectedPokemon([...selectedPokemon, item]);
   };
 
   const handleDecreaseItem = (item) => {
     var found = false;
-    const filtered = selectedItems.filter(v => found || !(found = v === item));
-    setSelectedItems(filtered);
+    const filtered = selectedPokemon.filter(v => found || !(found = v === item));
+    setSelectedPokemon(filtered);
   };
 
   return (
@@ -62,13 +88,13 @@ const App = () => {
         <div className="container">
 
           <ProductsGrid
-            items={items}
+            items={pokemon}
             onClick={handleIncreaseItem}
             title={types[selectedTypeIdx]}
           />
 
           <Cart
-            selectedItems={selectedItems}
+            selectedItems={selectedPokemon}
             increaseItem={handleIncreaseItem}
             decreaseItem={handleDecreaseItem}
             subtotal={subtotal}
