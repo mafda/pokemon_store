@@ -1,0 +1,123 @@
+
+/* ======= CART ======= */
+
+main .cart {
+  width: 40%;
+  margin: 20px;
+  padding: 30px;
+}
+
+main .summary-cart {
+  align-content: center;
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main .summary {
+  background: #f1f1f1;
+  padding: 10px;
+  height: 100%;
+}
+
+main .summary strong {
+  font-size: 18px;
+}
+
+main .summary-title {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/** items summary */
+
+.summary ul {
+  list-style: none;
+  margin: 10px;
+}
+
+.summary li {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.summary-description{
+  width: 75%;
+  padding: 10px;
+}
+
+.summary img{
+  width: 15%;
+  object-fit: cover;
+}
+
+.summary-description-name strong {
+  font-size: 18px;
+}
+
+.summary-description-product{
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  padding-top: 5px;
+  margin-right: 20px;
+}
+
+.summary-add {
+  width: 10%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary-add span {
+  font-size: 20px;
+  transition: filter 0.2s;
+  cursor: pointer;
+}
+
+.summary-add span:hover {
+	opacity: 0.8;
+}
+
+/** summary costs */
+
+.cost {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #322153;
+  padding: 15px 20px;
+}
+
+.label strong {
+  font-size: 18px;
+  color: #6C6C80;
+}
+
+.total {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/** checkout */
+
+.checkout  {
+  height: 45px;
+	border: 0;
+	background-color: #666;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  transition: filter 0.2s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout:hover {
+	opacity: 0.8;
+}
