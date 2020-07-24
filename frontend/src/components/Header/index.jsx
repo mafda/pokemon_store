@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
 
 import './styles.css';
 import './nav.css';
 
 const Header = (prop) => {
+
+  const [productCounter, setProductCounter] = useState(0);
+
+  useEffect(() => {
+    setProductCounter(prop.selectedItems.length);
+  }, [prop.selectedItems]);
+
   return (
     <header>
       <div className="container">
@@ -47,7 +54,7 @@ const Header = (prop) => {
               <p>Cart</p>
             </div>
             <div className="icon">
-              <span className="badge">{prop.count}</span>
+              <span className="badge">{productCounter}</span>
             </div>
           </div>
         </div>

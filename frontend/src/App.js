@@ -16,6 +16,7 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const itemPerPage = 12;
   const [pokeByType, setPokeByType] = useState([]);
+  const [productCounter, setProductCounter] = useState(0);
 
 
   // Initial loading
@@ -56,9 +57,6 @@ const App = () => {
 
   }, [pokeByType, pageNumber]);
 
-
-  const itemsCount = 3;
-
   const types = ['Type 1', 'Type 2'];
   const selectedTypeIdx = 0;
 
@@ -78,9 +76,9 @@ const App = () => {
   return (
     <div>
       <Header
-        count={itemsCount}
         types={types}
         user={user}
+        selectedItems={selectedPokemon}
       />
 
       <main>
