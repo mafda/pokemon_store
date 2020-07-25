@@ -61,6 +61,9 @@ const App = () => {
         });
       }
       setPokemon(listPokemon);
+
+      // Include one pokemon to cart
+      setSelectedPokemon([listPokemon[0]]);
     };
 
     loadPokemon();

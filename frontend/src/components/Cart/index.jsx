@@ -71,27 +71,31 @@ const ProductList = (prop) => {
     <ul>
       {singleSelected.map(item => (
         <li key={item.name}>
-          <img src={item.img_url} alt={item.name} />
-          <div className='summary-description'>
-            <div className='summary-description-name'>
-              <strong>{item.name}</strong>
+          <div className="summary-wrapper">
+            <div className="summary-img">
+              <img src={item.img_url} alt={item.name} />
             </div>
-            <div className='summary-description-product'>
-              <p>Quantity: {counts[item.name]}</p>
-              <p>${pricePerQtt[item.name].toFixed(2)}</p>
+            <div className='summary-description'>
+              <div className='summary-description-name'>
+                <p>{item.name}</p>
+              </div>
+              <div className='summary-description-product'>
+                <p className='s-price'>Price: ${pricePerQtt[item.name].toFixed(2)}</p>
+                <p>Quantity: {counts[item.name]}</p>
+              </div>
             </div>
-          </div>
-          <div className='summary-add'>
-            <span
-              onClick={() => { prop.increaseItem(item) }}
-            >
-              <FaPlusCircle />
-            </span>
-            <span
-              onClick={() => { prop.decreaseItem(item) }}
-            >
-              <FaMinusCircle />
-            </span>
+            <div className='summary-add'>
+              <span
+                onClick={() => { prop.increaseItem(item) }}
+              >
+                <FaPlusCircle />
+              </span>
+              <span
+                onClick={() => { prop.decreaseItem(item) }}
+              >
+                <FaMinusCircle />
+              </span>
+            </div>
           </div>
         </li>
       ))}
@@ -120,9 +124,9 @@ const Cart = (prop) => {
     <div className="cart">
       <div className='summary-cart'>
         <div className='summary'>
+          <p>Summary Order</p>
 
-          <div className='summary-title'>
-            <strong>Cart</strong>
+          <div className='summary-product'>
             <ProductList
               selectedItems={prop.selectedItems}
               increaseItem={prop.increaseItem}
@@ -158,7 +162,9 @@ const Cart = (prop) => {
             />
           </div>
         </div>
-        <input type="submit" value="Catch 'em all!" className="checkout" />
+        <div className="checkout-wrapper">
+          <input type="submit" value="Catch 'em all!" className="checkout" />
+        </div>
       </div>
     </div>
   );

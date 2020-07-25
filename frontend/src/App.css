@@ -29,7 +29,8 @@ main {
 }
 
 main .container {
-  width: 80%;
   display: flex;
+  align-items: start;
+  width: 80%;
   min-width: 340px;
 }
