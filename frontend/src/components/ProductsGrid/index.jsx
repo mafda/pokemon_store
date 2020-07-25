@@ -9,7 +9,7 @@ const Product = (prop) => {
       <ul>
         {prop.items.map(item => (
           <li key={item.id}>
-            <img src={item.img_url} alt="" />
+            <img src={item.img_url} alt={item.name} />
             <div className="p-name">
               <strong>{item.name}</strong>
             </div>
@@ -18,7 +18,7 @@ const Product = (prop) => {
               <p>{item.other} kg</p>
             </div>
             <button className='buy' onClick={() => { prop.onClick(item) }} >
-              Buy
+              Catch it!
             </button>
           </li>
         ))}

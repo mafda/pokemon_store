@@ -30,7 +30,13 @@ const Header = (prop) => {
               <div className="nav-container">
                 <ul className="nav-tabs">
                   {prop.types.map(item => (
-                    <li className="nav-tab" key={item}>{item}</li>
+                    <li
+                      className="nav-tab"
+                      key={item.id}
+                      onClick={() => { prop.onClickTypes(item) }}
+                    >
+                      {item.name}
+                    </li>
                   ))}
                 </ul>
               </div>

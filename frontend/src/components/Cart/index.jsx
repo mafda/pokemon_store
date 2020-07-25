@@ -41,41 +41,44 @@ const ProductList = (prop) => {
     const newCounts = {};
     const newSingle = [];
     const newPrices = {};
-    var newSubtotal = 0;
     var newWeight = 0;
+    var newSubtotal = 0;
 
     prop.selectedItems.forEach((item) => {
-      newCounts[item.id] = (newCounts[item.id] || 0) + 1;
-      if (newCounts[item.id] === 1) {
+      newCounts[item.name] = (newCounts[item.name] || 0) + 1;
+      if (newCounts[item.name] === 1) {
         newSingle.push(item);
       }
 
-      newPrices[item.id] = newCounts[item.id] * item.price;
+      newPrices[item.name] = newCounts[item.name] * item.price;
 
-      newSubtotal += item.price;
+      // Calculate weight
       newWeight += item.other;
+
+      // Calculate subtotal price
+      newSubtotal += item.price;
     });
 
     setSingleSelected(newSingle);
     setCounts(newCounts);
     setPricePerQtt(newPrices);
-    setSubtotal(newSubtotal);
     setWeight(newWeight);
+    setSubtotal(newSubtotal);
 
   }, [prop.selectedItems, setSubtotal, setWeight]);
 
   return (
     <ul>
       {singleSelected.map(item => (
-        <li key={item.id}>
+        <li key={item.name}>
           <img src={item.img_url} alt={item.name} />
           <div className='summary-description'>
             <div className='summary-description-name'>
               <strong>{item.name}</strong>
             </div>
             <div className='summary-description-product'>
-              <p>Quantity: {counts[item.id]}</p>
-              <p>${pricePerQtt[item.id].toFixed(2)}</p>
+              <p>Quantity: {counts[item.name]}</p>
+              <p>${pricePerQtt[item.name].toFixed(2)}</p>
             </div>
           </div>
           <div className='summary-add'>
@@ -102,10 +105,12 @@ const Cart = (prop) => {
   const [shipping, setShipping] = useState(0);
   const [total, setTotal] = useState(0);
 
+  // Calculate shipping price
   useEffect(() => {
     setShipping(weight / 10);
   }, [weight]);
 
+  // Calculate total price
   useEffect(() => {
     setTotal(subtotal + shipping);
 
@@ -153,7 +158,7 @@ const Cart = (prop) => {
             />
           </div>
         </div>
-        <input type="submit" value="Checkout" className="checkout" />
+        <input type="submit" value="Catch 'em all!" className="checkout" />
       </div>
     </div>
   );
