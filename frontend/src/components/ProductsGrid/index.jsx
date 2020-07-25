@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 
 const Product = (prop) => {
+  const [styleItems, setStyleItems] = useState("items");
+
+  useEffect(() => {
+
+    if (prop.hiddenCart) {
+      setStyleItems("items full");
+    } else {
+      setStyleItems("items");
+    }
+
+  }, [prop.hiddenCart]);
+
   return (
-    <div className="items">
+    <div className={styleItems}>
       <h2>{prop.title}</h2>
       <ul>
         {prop.items.map(item => (
-          <li key={item.id}>
+          <li key={item.name}>
             <div className="p-img">
               <img src={item.img_url} alt={item.name} />
             </div>

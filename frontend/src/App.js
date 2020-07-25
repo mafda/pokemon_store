@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 import ProductsGrid from './components/ProductsGrid';
 import Cart from './components/Cart';
 
-
 const App = () => {
 
   // User name - hard code
@@ -27,6 +26,11 @@ const App = () => {
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
   const itemPerPage = 12;
+
+  // Hidden cart
+  const [hiddenCart, setHiddenCart] = useState(false);
+  const windowSize = useWindowSize();
+  const [autoHidden, setAutoHidden] = useState(true);
 
   // ===============================================================
 
@@ -90,6 +94,28 @@ const App = () => {
     setSelectedPokemon(filtered);
   };
 
+  // Hidden cart
+  const handleCartClick = () => {
+    setHiddenCart(!hiddenCart);
+    setAutoHidden(false);
+  };
+
+  useEffect(() => {
+    const width = 1100;
+
+    if (autoHidden && !hiddenCart && windowSize.width < width) {
+      setHiddenCart(true);
+    }
+
+    if (autoHidden && hiddenCart && windowSize.width >= width) {
+      setHiddenCart(false);
+    }
+
+    setAutoHidden(true);
+
+  }, [windowSize, hiddenCart]);
+
+
   return (
     <div>
       <Header
@@ -97,6 +123,7 @@ const App = () => {
         onClickTypes={handleTypes}
         user={user}
         selectedItems={selectedPokemon}
+        onCartClick={handleCartClick}
       />
 
       <main>
@@ -106,12 +133,14 @@ const App = () => {
             items={pokemon}
             onClick={handleIncreaseItem}
             title={gridTitle}
+            hiddenCart={hiddenCart}
           />
 
           <Cart
             selectedItems={selectedPokemon}
             increaseItem={handleIncreaseItem}
             decreaseItem={handleDecreaseItem}
+            hiddenCart={hiddenCart}
           />
 
         </div>
@@ -124,3 +153,33 @@ const App = () => {
 }
 
 export default App;
+
+// useWindowSize() hook
+// src: https://usehooks.com/useWindowSize/
+function useWindowSize() {
+  const isClient = typeof window === 'object';
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined
+    };
+  }
+
+  const [windowSize, setWindowSize] = useState(getSize);
+
+  useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}

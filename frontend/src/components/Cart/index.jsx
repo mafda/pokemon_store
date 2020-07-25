@@ -108,6 +108,7 @@ const Cart = (prop) => {
   const [weight, setWeight] = useState(0);
   const [shipping, setShipping] = useState(0);
   const [total, setTotal] = useState(0);
+  const [cartStyle, setCartStyle] = useState("cart");
 
   // Calculate shipping price
   useEffect(() => {
@@ -120,8 +121,19 @@ const Cart = (prop) => {
 
   }, [subtotal, shipping]);
 
+  // 
+  useEffect(() => {
+    if (prop.hiddenCart) {
+      setCartStyle("cart hidden");
+    } else {
+      setCartStyle("cart");
+    }
+
+  }, [prop.hiddenCart]);
+
+
   return (
-    <div className="cart">
+    <div className={cartStyle}>
       <div className='summary-cart'>
         <div className='summary'>
           <p>Summary Order</p>

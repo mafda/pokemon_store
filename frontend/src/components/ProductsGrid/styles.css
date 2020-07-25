@@ -7,6 +7,10 @@
   max-width: 2000px;
 }
 
+.full {
+  width: 100%;
+}
+
 .items h2 {
   font-size: 35px;
   font-weight: 300;

@@ -52,7 +52,7 @@ const Header = (prop) => {
               <p>Hello, {prop.user}</p>
             </div>
           </div>
-          <div className="cart-wrapper">
+          <div className="cart-wrapper" onClick={prop.onCartClick}>
             <div className="icon">
               <FaShoppingCart />
             </div>
