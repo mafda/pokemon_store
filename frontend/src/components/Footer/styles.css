@@ -13,12 +13,12 @@ footer {
   justify-content: center;
 }
 
-footer .sign {
+.sign {
   font-size: 14px;
   font-weight: 200;
 }
 
-footer .sign span,
+.sign span,
 a {
   color: #333;
   text-decoration: none;

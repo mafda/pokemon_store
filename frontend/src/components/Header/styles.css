@@ -14,45 +14,45 @@ header {
   font-family: "Roboto", sans-serif;
 }
 
-header .container {
+.container {
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 370px;
 }
 
-header .t-typ {
-  width: 70%;
+.t-typ {
+  width: 40%;
 }
 
-header .u-car {
-  width: 30%;
+.u-car {
+  width: 40%;
   display: flex;
   font-size: 20px;
   font-weight: 300;
 }
 
-header .user {
-  width: 40%;
+.user-wrapper, .cart-wrapper{
+  width: 45%;
   display: flex;
-  align-items: center;
-  justify-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-header .cart {
-  width: 60%;
+.icon, .u-car-text {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-header .icon {
+.icon {
   margin-right: 10px;
-  display: flex;
 }
 
-header .badge {
+.u-car-text{
+  display: none;
+}
+
+.badge {
   background-color: #f0f0f0;
   border-radius: 10px;
   color: black;
@@ -64,15 +64,20 @@ header .badge {
   white-space: nowrap; 
 }
 
-header .u-car-text{
-  display: none;
-}
-
-@media (min-width: 1000px) {
-  header .u-car-text{
+@media (min-width: 800px) {
+  .u-car-text{
     display: flex;
   }
-  header .badge {
+
+  .badge {
     margin-left: 10px;
+  }
+
+  .t-typ {
+    width: 60%;
+  }
+  
+  .u-car {
+    width: 40%;
   }
 }

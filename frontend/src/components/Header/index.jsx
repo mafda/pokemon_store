@@ -44,7 +44,7 @@ const Header = (prop) => {
           </nav>
         </div>
         <div className="u-car">
-          <div className="user">
+          <div className="user-wrapper">
             <div className="icon">
               <FaUserCircle />
             </div>
@@ -52,7 +52,7 @@ const Header = (prop) => {
               <p>Hello, {prop.user}</p>
             </div>
           </div>
-          <div className="cart">
+          <div className="cart-wrapper">
             <div className="icon">
               <FaShoppingCart />
             </div>
