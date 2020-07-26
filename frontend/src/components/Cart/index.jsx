@@ -134,6 +134,7 @@ const Cart = (prop) => {
 
   return (
     <div className={cartStyle}>
+      <div className="triangle-up"></div>
       <div className='summary-cart'>
         <div className='summary'>
           <p>Summary Order</p>
@@ -173,9 +174,9 @@ const Cart = (prop) => {
               total={true}
             />
           </div>
-        </div>
-        <div className="checkout-wrapper">
-          <input type="submit" value="Catch 'em all!" className="checkout" />
+          <div className="checkout-wrapper">
+            <input type="submit" value="Catch 'em all!" className="checkout" />
+          </div>
         </div>
       </div>
     </div>

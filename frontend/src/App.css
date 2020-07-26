@@ -30,7 +30,7 @@ main {
 
 main .container {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   width: 80%;
   min-width: 340px;
 }

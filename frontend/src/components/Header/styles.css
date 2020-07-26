@@ -33,6 +33,10 @@ header .container {
   font-weight: 300;
 }
 
+.cart-wrapper{
+  cursor: pointer;
+}
+
 .user-wrapper, .cart-wrapper{
   width: 45%;
   display: flex;
