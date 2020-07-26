@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductsGrid from './components/ProductsGrid';
 import Cart from './components/Cart';
+import Styling from './components/Styling';
 
 const App = () => {
 
@@ -118,6 +119,7 @@ const App = () => {
 
   return (
     <div>
+      <Styling pokemonType={pokemonType} />
       <Header
         types={types}
         onClickTypes={handleTypes}

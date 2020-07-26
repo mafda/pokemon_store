@@ -10,7 +10,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #999;
+  background-color: var(--bg-header);
   font-family: "Roboto", sans-serif;
 }
 
@@ -46,6 +46,7 @@ header .container {
 .icon, .u-car-text {
   display: flex;
   align-items: center;
+  color: var(--button-text);
 }
 
 .icon {
@@ -57,15 +58,16 @@ header .container {
 }
 
 .badge {
-  background-color: #f0f0f0;
+  background-color: var(--bg-badge);
   border-radius: 10px;
-  color: black;
+  color: var(--title);
   display: inline-block;
   font-size: 14px;
   padding: 3px 7px;
   text-align: center;
   vertical-align: middle;
-  white-space: nowrap; 
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 @media (min-width: 800px) {

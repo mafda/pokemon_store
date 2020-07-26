@@ -4,6 +4,8 @@ import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
 import './styles.css';
 import './nav.css';
 
+import logo from '../../assets/pokemon-logo-6.png';
+
 const Header = (prop) => {
 
   const [productCounter, setProductCounter] = useState(0);
@@ -25,7 +27,7 @@ const Header = (prop) => {
                 <div className="menu"></div>
               </label>
               <div className="logo-container">
-                <img src="https://dummyimage.com/100x60" alt="Logo" />
+                <img src={logo} alt="Logo" />
               </div>
               <div className="nav-container">
                 <ul className="nav-tabs">

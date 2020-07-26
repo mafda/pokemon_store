@@ -137,6 +137,7 @@ const Cart = (prop) => {
       <div className="triangle-up"></div>
       <div className='summary-cart'>
         <div className='summary'>
+
           <p>Summary Order</p>
 
           <div className='summary-product'>
