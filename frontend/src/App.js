@@ -27,6 +27,7 @@ const App = () => {
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
   const itemPerPage = 12;
+  const [hasMore, setHasMore] = useState(false);
 
   // Hidden cart
   const [hiddenCart, setHiddenCart] = useState(false);
@@ -38,42 +39,40 @@ const App = () => {
   // Initial loading API
   useEffect(() => {
     const loadPokeByType = async (type) => {
+      setHasMore(false);
       const response = await api.get(`/type/${type}/`);
       setPokeByType(response.data.pokemon);
+      setPageNumber(0);
+      setPokemon([]);
+      setHasMore(true);
     };
 
     loadPokeByType(pokemonType);
+
   }, [pokemonType]);
 
   // Load pokemon 
-  useEffect(() => {
+  const loadPokemon = async () => {
+    setHasMore(false);
 
-    if (pokeByType.length === 0) {
-      return
+    const listPokemon = [...pokemon];
+    const start = pageNumber * itemPerPage;
+    const end = Math.min((pageNumber + 1) * itemPerPage, pokeByType.length);
+
+    for (let i = start; i < end; i++) {
+      const { data } = await api.get(pokeByType[i].pokemon.url);
+      listPokemon.push({
+        name: data.name[0].toUpperCase() + data.name.slice(1),
+        price: data.base_experience,
+        other: data.weight,
+        img_url: data.sprites.front_default,
+      });
     }
 
-    const loadPokemon = async () => {
-      const listPokemon = [];
-      const start = pageNumber * itemPerPage;
-      const end = (pageNumber + 1) * itemPerPage;
-      for (let i = start; i < end; i++) {
-        const { data } = await api.get(pokeByType[i].pokemon.url);
-        listPokemon.push({
-          name: data.name[0].toUpperCase() + data.name.slice(1),
-          price: data.base_experience,
-          other: data.weight,
-          img_url: data.sprites.front_default,
-        });
-      }
-      setPokemon(listPokemon);
-
-      // Include one pokemon to cart
-      setSelectedPokemon([listPokemon[0]]);
-    };
-
-    loadPokemon();
-
-  }, [pokeByType, pageNumber]);
+    setPokemon(listPokemon);
+    setPageNumber(pageNumber + 1);
+    setHasMore(end !== pokeByType.length);
+  };
 
   // ===============================================================
 
@@ -136,6 +135,8 @@ const App = () => {
             onClick={handleIncreaseItem}
             title={gridTitle}
             hiddenCart={hiddenCart}
+            hasMore={hasMore}
+            loadMore={loadPokemon}
           />
 
           <Cart
