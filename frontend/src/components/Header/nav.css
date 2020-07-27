@@ -3,7 +3,7 @@
 nav {
   display: flex;
   justify-items: center;
-  align-items: center;
+	align-items: center;
 }
 
 .nav-wrapper {
@@ -43,7 +43,7 @@ nav {
 }
 
 .nav-tab:hover{
-	opacity: 0.9;
+	opacity: 0.8;
 }
 
 .nav-tab,
@@ -81,15 +81,15 @@ nav {
 		color: var(--title);
 	}
 
-	.nav-tab:not(:last-child) {
-		padding: 20px 40px;
-		margin: 0;
-		border-right: unset;
-		border-bottom: 1px solid var(--title);
+	.nav-tab, .nav-tab:last-child {
+		padding: 15px 35px;
+		background-color: var(--bg-main);
+		margin: 5px 0;
+		border-radius: 10px;
 	}
-
-	.nav-tab:last-child {
-		padding: 15px 40px;
+	
+	.nav-tab:hover{
+		opacity: 0.8;
 	}
 
 	.menu-btn {
