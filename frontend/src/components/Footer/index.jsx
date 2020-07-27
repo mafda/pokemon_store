@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="sign">
-        <p>< FaCode /> with < FaHeart /> by <a href="https://mafda.github.io/"
+        <p><span>< FaCode /></span> with <span>< FaHeart /></span> by <a href="https://mafda.github.io/"
           target="blank">mafda</a></p>
       </div>
     </footer>
