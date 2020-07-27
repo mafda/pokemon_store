@@ -101,7 +101,9 @@ Done! Now navigate to http://localhost:3000/
 heroku create awesome-pokemon-store
 
 # 2. Deploy it :)
-git push heroku master
+git subtree push --prefix frontend heroku master
+
+heroku create -b https://github.com/mars/create-react-app-buildpack.git
 
 # 3. Enjoy it!
 echo "well done! :)"
