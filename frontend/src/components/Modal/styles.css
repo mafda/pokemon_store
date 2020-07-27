@@ -1,0 +1,51 @@
+/* ======= MODAL ======= */
+
+.modal {
+  position: absolute;
+  /* top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px; */
+  background-color: var(--bg-box);
+  box-shadow: 5px 5px 30px var(--text);
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 120px;
+  padding: 20px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.modal h2 {
+  color: var(--title);
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.modal p {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.modal button {
+  width: 20px;
+  height: 20px;
+  float: right;
+  color: var(--border);
+  background-color: var(--title);
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.modal span {
+  color: var(--title);
+}

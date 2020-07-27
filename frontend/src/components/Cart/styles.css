@@ -50,7 +50,7 @@
 .summary-product {
   padding: 10px 0;
   overflow: auto;
-  max-height: 250px;
+  max-height: 200px;
 }
 
 /** items summary */
@@ -143,7 +143,7 @@
   display: flex;
   justify-content: space-between;
   border-top: 1px solid var(--border);
-  padding: 15px 0;
+  padding: 8px 0;
 }
 
 .label strong {
@@ -159,6 +159,7 @@
 
 .subtotal p{
   color: var(--text);
+  font-size: 16px;
 }
 
 /** checkout */
@@ -171,18 +172,15 @@
 }
 
 .checkout {
+	border: 0;
   height: 45px;
   width: 100%;
-	border: 0;
+  border-radius: 10px;
   background-color: var(--button);
   color: var(--button-text);
-  border-radius: 10px;
-  text-align: center;
-  text-decoration: none;
   font-size: 20px;
   transition: filter 0.2s;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .checkout:hover {
@@ -214,6 +212,10 @@
 
   .label strong {
     padding: 0 10px;
+    font-size: 18px;
+  }
+
+  .subtotal p{
     font-size: 18px;
   }
   

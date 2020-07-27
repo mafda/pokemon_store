@@ -131,7 +131,6 @@ const Cart = (prop) => {
 
   }, [prop.hiddenCart]);
 
-
   return (
     <div className={cartStyle}>
       <div className="triangle-up"></div>
@@ -176,7 +175,12 @@ const Cart = (prop) => {
             />
           </div>
           <div className="checkout-wrapper">
-            <input type="submit" value="Catch 'em all!" className="checkout" />
+            <input
+              type="submit"
+              value="Catch 'em all!"
+              className="checkout"
+              onClick={prop.onCheckout}
+            />
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import ProductsGrid from './components/ProductsGrid';
 import Cart from './components/Cart';
 import Styling from './components/Styling';
+import Modal from './components/Modal';
 
 const App = () => {
 
@@ -33,6 +34,9 @@ const App = () => {
   const [hiddenCart, setHiddenCart] = useState(false);
   const windowSize = useWindowSize();
   const [autoHidden, setAutoHidden] = useState(true);
+
+  // Modal
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   // ===============================================================
 
@@ -74,8 +78,6 @@ const App = () => {
     setHasMore(end !== pokeByType.length);
   };
 
-  // ===============================================================
-
   // Pokemon type
   const handleTypes = (item) => {
     setPokemonType(item.id);
@@ -100,6 +102,19 @@ const App = () => {
     setAutoHidden(false);
   };
 
+  // Modal
+  const openModal = () => {
+    console.log('modal');
+    setIsOpen(true);
+  };
+
+  function closeModal() {
+    setIsOpen(false);
+    console.log('close');
+    setSelectedPokemon([]);
+  }
+
+
   useEffect(() => {
     const width = 1100;
 
@@ -119,6 +134,10 @@ const App = () => {
   return (
     <div>
       <Styling pokemonType={pokemonType} />
+      <Modal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+      />
       <Header
         types={types}
         onClickTypes={handleTypes}
@@ -127,23 +146,24 @@ const App = () => {
         onCartClick={handleCartClick}
       />
 
-      <main>
+      <main id="main">
         <div className="container">
 
           <ProductsGrid
             items={pokemon}
-            onClick={handleIncreaseItem}
             title={gridTitle}
             hiddenCart={hiddenCart}
             hasMore={hasMore}
+            onClick={handleIncreaseItem}
             loadMore={loadPokemon}
           />
 
           <Cart
             selectedItems={selectedPokemon}
+            hiddenCart={hiddenCart}
             increaseItem={handleIncreaseItem}
             decreaseItem={handleDecreaseItem}
-            hiddenCart={hiddenCart}
+            onCheckout={openModal}
           />
 
         </div>
