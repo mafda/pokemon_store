@@ -52,6 +52,12 @@ const App = () => {
       setPageNumber(0);
       setPokemon([]);
       setHasMore(true);
+
+      const data = JSON.parse(localStorage.getItem("selectedPokemon"));
+
+      if (data) {
+        setSelectedPokemon(data);
+      }
     };
 
     loadPokeByType(pokemonType);
@@ -91,7 +97,9 @@ const App = () => {
 
   // Add items
   const handleIncreaseItem = (item) => {
-    setSelectedPokemon([...selectedPokemon, item]);
+    const data = [...selectedPokemon, item];
+    setSelectedPokemon(data);
+    localStorage.setItem("selectedPokemon", JSON.stringify(data));
   };
 
   // Remove items
@@ -99,6 +107,7 @@ const App = () => {
     var found = false;
     const filtered = selectedPokemon.filter(v => found || !(found = v === item));
     setSelectedPokemon(filtered);
+    localStorage.setItem("selectedPokemon", JSON.stringify(filtered));
   };
 
   // Hidden cart
@@ -117,6 +126,7 @@ const App = () => {
     setIsOpen(false);
     console.log('close');
     setSelectedPokemon([]);
+    localStorage.setItem("selectedPokemon", JSON.stringify([]));
   }
 
 
