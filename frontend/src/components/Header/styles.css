@@ -34,11 +34,11 @@ header .container {
   font-weight: 300;
 }
 
-.cart-wrapper{
+.cart-wrapper, .search-wrapper{
   cursor: pointer;
 }
 
-.user-wrapper, .cart-wrapper{
+.user-wrapper, .cart-wrapper, .search-wrapper{
   width: 45%;
   display: flex;
   justify-content: flex-end;
@@ -71,7 +71,7 @@ header .container {
   font-weight: 900;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
   .u-car-text{
     display: flex;
   }
@@ -86,5 +86,23 @@ header .container {
   
   .u-car {
     width: 40%;
+  }
+}
+
+@media (min-width: 950px) {
+  .u-car-text{
+    display: flex;
+  }
+
+  .badge {
+    margin-left: 10px;
+  }
+
+  .t-typ {
+    width: 50%;
+  }
+  
+  .u-car {
+    width: 50%;
   }
 }

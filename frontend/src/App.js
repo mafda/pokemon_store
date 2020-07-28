@@ -38,6 +38,9 @@ const App = () => {
   // Modal
   const [modalIsOpen, setIsOpen] = useState(false);
 
+  // Search
+  const [search, setSearch] = useState('');
+
   // ===============================================================
 
   // Initial loading API
@@ -73,7 +76,9 @@ const App = () => {
       });
     }
 
-    setPokemon(listPokemon);
+    if (!search) {
+      setPokemon(listPokemon);
+    }
     setPageNumber(pageNumber + 1);
     setHasMore(end !== pokeByType.length);
   };
@@ -131,6 +136,34 @@ const App = () => {
   }, [windowSize, hiddenCart]);
 
 
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    // if (value) {
+    setSearch(value.trim().toLowerCase());
+    // }
+  };
+
+  useEffect(() => {
+    const filterPokemon = async () => {
+      const filteredList = [];
+      for (let i = 0; i < pokeByType.length; i++) {
+        const { data } = await api.get(pokeByType[i].pokemon.url);
+        if (data.name.includes(search)) {
+          filteredList.push({
+            name: data.name[0].toUpperCase() + data.name.slice(1),
+            price: data.base_experience,
+            other: data.weight,
+            img_url: data.sprites.front_default,
+          });
+        }
+      }
+      setPokemon(filteredList);
+    };
+
+    filterPokemon();
+
+  }, [search, pokeByType]);
+
   return (
     <div>
       <Styling pokemonType={pokemonType} />
@@ -144,6 +177,9 @@ const App = () => {
         user={user}
         selectedItems={selectedPokemon}
         onCartClick={handleCartClick}
+        onChangeSearch={handleSearch}
+        searchValue={search}
+        setSearchValue={setSearch}
       />
 
       <main id="main">

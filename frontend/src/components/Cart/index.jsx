@@ -121,7 +121,7 @@ const Cart = (prop) => {
 
   }, [subtotal, shipping]);
 
-  // 
+  // Hidden Cart
   useEffect(() => {
     if (prop.hiddenCart) {
       setCartStyle("cart hidden");

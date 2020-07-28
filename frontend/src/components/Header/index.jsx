@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
+import { FaUserCircle, FaShoppingCart, FaSearch, FaWindowClose } from 'react-icons/fa';
 
 import './styles.css';
 import './nav.css';
+import './search.css'
 
 import logo from '../../assets/pokemon-logo-6.png';
 
 const Header = (prop) => {
 
   const [productCounter, setProductCounter] = useState(0);
+  const [searchStyle, setSearchStyle] = useState("search search-hidden");
+  const [hiddenSearch, setHiddenSearch] = useState(true);
 
   useEffect(() => {
     setProductCounter(prop.selectedItems.length);
   }, [prop.selectedItems]);
+
+  // Hidden Search
+  useEffect(() => {
+    if (hiddenSearch) {
+      setSearchStyle("search search-hidden");
+    } else {
+      setSearchStyle("search");
+    }
+  }, [hiddenSearch]);
+
+  const handleSearch = () => {
+    setHiddenSearch(!hiddenSearch);
+  };
+
+  const handleCloseSearch = () => {
+    prop.setSearchValue('');
+    document.getElementById("search").value = "";
+    setHiddenSearch(true);
+  };
 
   return (
     <header>
@@ -46,6 +68,19 @@ const Header = (prop) => {
           </nav>
         </div>
         <div className="u-car">
+
+          <div
+            className="search-wrapper"
+            onClick={handleSearch}
+          >
+            <div className="icon">
+              <FaSearch />
+            </div>
+            <div className="u-car-text">
+              <p>Search</p>
+            </div>
+          </div>
+
           <div className="user-wrapper">
             <div className="icon">
               <FaUserCircle />
@@ -54,6 +89,7 @@ const Header = (prop) => {
               <p>Hello, {prop.user}</p>
             </div>
           </div>
+
           <div className="cart-wrapper" onClick={prop.onCartClick}>
             <div className="icon">
               <FaShoppingCart />
@@ -66,6 +102,16 @@ const Header = (prop) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={searchStyle}>
+        <input
+          id="search"
+          type="text"
+          placeholder="Enter name"
+          onChange={(e) => prop.onChangeSearch(e)}
+          value={prop.searchValue}
+        ></input>
+        <span onClick={handleCloseSearch}><FaWindowClose /></span>
       </div>
     </header>
   )
