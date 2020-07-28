@@ -15,7 +15,6 @@
 
 :rocket: A demo of ***Pokemon Store*** is available [**here**](https://mafda-pokemon-store.herokuapp.com/).
 
-<!-- gif -->
 
 ## Overview
 
@@ -138,6 +137,10 @@ Bonus features:
 ![prototype pokemon store](sketch/preview/sketch02.png)
 
 ## Results
+
+|         Desktop          |         Mobile          |
+| :----------------------: | :---------------------: |
+| ![](preview/desktop.gif) | ![](preview/mobile.gif) |
 
 ### Desktop
 ![preview desktop](preview/mafda-pokemon-store-desktop.png)
